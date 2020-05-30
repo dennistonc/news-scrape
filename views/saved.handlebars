@@ -1,0 +1,92 @@
+<div class="header-image">
+    <img src="./images/cover.jpg" class="img-fluid" alt="NYT News & Notes">
+    <h1 class="header-title">Saved Articles</h1>
+</div>
+
+{{!-- .test {
+    position: relative;
+    display:inline-block;
+}
+img {
+    max-width:100%;
+}
+h1 {
+    background-color: #bebebe;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right:0
+} --}}
+<div class="container-fluid">
+  <div id="articles">
+    {{#if article}}
+    {{#each article}}
+    <div data-id="{{this._id}}" class="row">
+      <div class="card bg-light mb-3 text-center">
+        <div class="card-header">
+          <h5>{{this.headline}}</h5>
+            </div>
+            <div class="card-body">
+          <h5 class="card-title">{{this.summary}}</h5>
+          <a target="_blank" href="{{this.URL}}">{{this.URL}}</a>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info trigger" data-toggle="modal" data-target="#note-modal" data-id={{this._id}}>Article Notes</button>
+          <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#note-modal" data-id={{this._id}}>Delete Article</button>
+          
+          {{!-- <a data-id={{this._id}} data-target="modal1" class="btn modal-trigger">Article Notes</button>
+          <a data-id={{this._id}} class="btn btn-info delete" role="button">Delete Article</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{else}}
+</div>
+
+
+<div class="container-fluid">
+  <div class="card bg-light mb-3 text-center">
+  <div class="card-body">
+    <h5 class="card-title">Oh no! Looks like you don't have any saved articles.</h5>
+    <p class="card-text">Why dont't you try saving some articles first?</p>
+    <a href="/" class="btn btn-info" role="button">Browse Articles</a>
+  </div>
+</div>
+</div>
+
+{{/if}}
+
+<!-- Modal -->
+{{#if article}}
+{{#each article}}
+<div class="modal fade" id="note-modal" tabindex="-1" role="dialog" aria-labelledby="note-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="note-modal-label">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <ul id="article-list">
+
+      </ul>
+      <form>
+        <div class="form-group">
+          <label for="input-note">New Note</label>
+          <input type="note" class="form-control" id="input-note" aria-describedby="input-for-note">
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success save-note" data-id={{this._id}}>Save Note</button>
+        <button type="button" class="btn btn-danger close-note" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{/if}}
