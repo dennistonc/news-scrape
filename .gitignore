@@ -1,2 +1,5 @@
 package-lock.json
 node_modules
+
+db username: news-scrape
+db pass: NYTNYT1
