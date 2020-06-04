@@ -14,17 +14,14 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("article").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.headline = $(this)
-        .children("a")
-        .text();
-      result.URL = "https://www.nytimes.com/" + $(this)
-        .children("a")
-        .attr("href");
+      result.headline = $(element).find("h2").text().trim();
+      result.summary = $(element).find("p").text().trim();
+      result.link = "https://www.nytimes.com" + $(element).find("a").attr("href");
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
@@ -40,6 +37,23 @@ app.get("/scrape", function(req, res) {
 
     // Send a message to the client
     res.send("Scrape Complete");
+
+//     $(".scrape-modal").html(`
+//     <div class="modal fade" id="note-modal" tabindex="-1" role="dialog" aria-labelledby="note-modal-label" aria-hidden="true">
+//       <div class="modal-dialog">
+//         <div class="modal-content">
+//         <div class="modal-header">
+//           <h5 class="modal-title" id="note-modal-label">
+//             Scrape Complete!
+//           </h5>
+//             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//             <span aria-hidden="true">&times;</span>
+//             </button>
+//           </div>
+//         <button type="button" class="btn btn-danger close-note" data-dismiss="modal">Close</button>
+//     </div>
+//   </div>
+// </div>`);
   });
 });
 

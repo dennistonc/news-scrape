@@ -18,14 +18,14 @@ $(".save-article").on("click", function () {
   var thisId = $(this).attr("data-id");
   $.ajax({
       method: "PUT",
-      url: "/articles/saved/" + thisId
-  }).then(function (data) {
-      location.reload()
-      $(".clear").remove();
+      url: "articles/saved/" + thisId
+    }).then(function (data) {
+        location.reload()
+        $(".clear").remove();
 
-  }).catch(function (error) {
-      console.log(error)
-  });
+    }).catch(function (error) {
+        console.log(error)
+    });
 })
 
 $(".trigger").on("click", function () {
@@ -51,7 +51,7 @@ $(".delete").on("click", function () {
   var thisId = $(this).attr("data-id");
   $.ajax({
       method: "PUT",
-      url: "/articles/deleted/" + thisId
+      url: "articles/deleted/" + thisId
   }).then(function (data) {
       location.reload()
   }).catch(function (error) {
@@ -63,17 +63,15 @@ $(".delete").on("click", function () {
 $(".save-note").on("click", function () {
   var thisId = $(this).attr("data-id");
   if (!$("#input-note").html("")) {
-      alert("please enter a note to save")
+      alert("Please enter a note before saving.")
   } else {
       $.ajax({
           method: "PUT",
-          url: "/notes/save/" + thisId,
+          url: "/notes/saved/" + thisId,
           data: {
               body: $("#input-note").val()
           }
       }).then(function (data) {
-
-
           // Log the response
           console.log(data);
           // Empty the notes section

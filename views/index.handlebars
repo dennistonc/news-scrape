@@ -1,34 +1,18 @@
-<div class="header-image">
-    <img src="./images/cover.jpg" class="img-fluid" alt="NYT News & Notes">
-    <h1 class="header-title">NYT News & Notes</h1>
-</div>
+{{!-- <div class="scrape-modal"></div> --}}
 
-{{!-- .test {
-    position: relative;
-    display:inline-block;
-}
-img {
-    max-width:100%;
-}
-h1 {
-    background-color: #bebebe;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right:0
-} --}}
 <div class="container-fluid">
   <div id="articles">
     {{#if article}}
     {{#each article}}
     <div data-id="{{this._id}}" class="row">
-      <div class="card bg-light mb-3 text-center">
-        <div class="card-header">
+      <div class="card bg-light mb-3 text-center container-fluid">
+        <div class="card-header container-fluid">
           <h5>{{this.headline}}</h5>
             </div>
-            <div class="card-body">
-          <h5 class="card-title">{{this.summary}}</h5>
-          <a target="_blank" href="{{this.URL}}">{{this.URL}}</a>
+            <div class="card-body container-fluid">
+          <h5 class="card-title container-fluid">{{this.summary}}</h5>
+          <a target="_blank" href="{{this.link}}">{{this.link}}</a>
+          <br>
           <a data-id="{{this._id}}" class="btn btn-success save-article" role="button">Save Article</a>
         </div>
       </div>
@@ -40,11 +24,13 @@ h1 {
 
 
 <div class="container-fluid">
-  <div class="card bg-light mb-3 text-center">
-    <div class="card-body">
-      <h5 class="card-title">Oh no! Looks like you don't have any scraped articles.</h5>
-      <p class="card-text">Why dont't you try scraping some articles first?</p>
+  <div class="card bg-light mb-3 text-center container-fluid">
+    <div class="card-body container-fluid">
+      <h5 class="card-title container-fluid">Oh no! Looks like you don't have any scraped articles.</h5>
+      <p class="card-text container-fluid">Why dont't you try scraping some articles first?</p>
+      <br>
       <a href="/scrape" class="btn btn-info" role="button">Scrape Articles</a>
+      <br>
       <a href="/saved" class="btn btn-info" role="button">Saved Articles</a>
     </div>
   </div>

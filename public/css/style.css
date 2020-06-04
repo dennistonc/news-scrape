@@ -1,0 +1,14 @@
+.test {
+    position: relative;
+    display:inline-block;
+}
+img {
+    max-width:100%;
+}
+h1 {
+    background-color: #bebebe;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right:0
+}

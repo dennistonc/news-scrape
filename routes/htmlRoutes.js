@@ -12,8 +12,8 @@ app.get("/", function(req, res) {
               _id: data[i]._id,
               saved: data[i].saved,
               headline: data[i].headline,
-              summary: data[i].main,
-              URL: data[i].URL
+              summary: data[i].summary,
+              link: data[i].link
           })
       }
 
@@ -35,8 +35,8 @@ app.get("/", function(req, res) {
               _id: data[i]._id,
               saved: data[i].saved,
               headline: data[i].headline,
-              summary: data[i].main,
-              URL: data[i].URL
+              summary: data[i].summary,
+              link: data[i].link
           })
       }
 
