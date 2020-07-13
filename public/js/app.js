@@ -30,17 +30,16 @@ $(".save-article").on("click", function () {
 
 $(".trigger").on("click", function () {
   var thisId = $(this).attr("data-id");
-  $("#article-list").empty();
+//   $("#article-list").empty();
   $.ajax({
       method: "GET",
       url: "/articles/" + thisId
   }).then(function (data) {
       console.log(data)
-      $("#note-modal-label").html(data.title.trim())
+      $("#note-modal-label").html(data.title)
       for (var i = 0; i < data.note.length; i++) {
-          $("#article-list").append(`<li style="font-size:18px">${data.note[i].body}<a style="float: right;" data-id="${data._id}" note-data-id="${data.note[i]._id}" id="delete-note" class="btn btn-danger">X</a></li>`)
+          $("#article-list").html(`<p style="font-size:18px">${data.note[i].body}<a style="float: right; margin-bottom: 20px; color: #ffffff;" data-id="${data._id}" note-data-id="${data.note[i]._id}" id="delete-note" class="btn btn-sm btn-danger">X</a></p><hr>`)
       }
-      location.reload()
   }).catch(function (error) {
       console.log(error)
   });
@@ -74,10 +73,11 @@ $(".save-note").on("click", function () {
       }).then(function (data) {
           // Log the response
           console.log(data);
+          location.reload();
           // Empty the notes section
           $("#input-note").val("");
           $("#note-modal").modal("hide");
-          location.reload()
+        //   location.reload();
       }).catch(function (error) {
           console.log(error)
       });
