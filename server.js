@@ -5,6 +5,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var bodyParser = require('body-parser')
 var exphbs = require("express-handlebars");
+var dotenv = require('dotenv');
 
 var db = require("./models");
 
@@ -20,8 +21,9 @@ app.use(express.static("public/css"));
 
 // Connect to the Mongo DB
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://news-scrape:NYTNYT1@ds041188.mlab.com:41188/heroku_p4nz675l";
-mongoose.connect(MONGODB_URI);
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://usernamegoeshere:passwordgoeshere@cluster-p4nz675l.1n4x6.mongodb.net/heroku_p4nz675l?retryWrites=true&w=majority";
+dotenv.config()
+mongoose.connect(process.env.MONGODB_URI);
 
 // Handlebars
 app.engine("handlebars",exphbs({defaultLayout: "main"}));
